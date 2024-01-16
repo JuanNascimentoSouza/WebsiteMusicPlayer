@@ -187,8 +187,9 @@ body {
     margin-bottom: 8px;
 }
 
-.container main .trending .left .info h4 .container main .trending .left .info h5 {
+.container main .trending .left .info h4 {
     display: inline;
+    margin-left: 12px;
 }
 
 .container main .trending .left .info h5 {
