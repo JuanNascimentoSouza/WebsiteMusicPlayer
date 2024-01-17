@@ -128,9 +128,10 @@
                         <h2>Comfortable</h2>
                         <h4>Victor Ray</h4>
                         <h5>63 Million Plays</h5>
-                        <div class="buttons">
+                        <div class="listen-now">
                             <button>Listen Now</button>
                             <i class="bx bxs-heart"></i>
+                            <audio src="musicas/Confortable.mp3"></audio>
                         </div>
                     </div>
                 </div>
@@ -184,11 +185,11 @@
                             </div>
                             <div class="actions">
                                 <p>03:45</p>
-                                <div class="icon">
-                                    <i class='bx bxs-right-arrow'></i>
-                                    <audio id="botao-play" src="src/dontwannaknow.mp3"></audio>
+                                <div class="icon music1">
+                                    <!--  <i class='bx bxs-right-arrow'></i>  -->
+                                    <audio src="musicas/dontwannaknow.mp3"></audio>
                                 </div>
-                                <i class='bx bxs-plus-square'></i>
+                                <!--  <i class='bx bxs-plus-square'></i>  -->
                             </div>
                         </div>
                         <div class="item">
@@ -202,10 +203,10 @@
                             </div>
                             <div class="actions">
                                 <p>04:35</p>
-                                <div class="icon">
-                                    <i class='bx bxs-right-arrow'></i>
+                                <div class="icon music2">
+                                    <!--  <i class='bx bxs-right-arrow'></i>  -->
                                 </div>
-                                <i class='bx bxs-plus-square'></i>
+                                <!--  <i class='bx bxs-plus-square'></i>  -->
                             </div>
                         </div>
                         <div class="item">
@@ -219,10 +220,10 @@
                             </div>
                             <div class="actions">
                                 <p>04:22</p>
-                                <div class="icon">
-                                    <i class='bx bxs-right-arrow'></i>
+                                <div class="icon music3">
+                                    <!--  <i class='bx bxs-right-arrow'></i>-->
                                 </div>
-                                <i class='bx bxs-plus-square'></i>
+                                <!--  <i class='bx bxs-plus-square'></i>  -->
                             </div>
                         </div>
                         <div class="item">
@@ -236,10 +237,10 @@
                             </div>
                             <div class="actions">
                                 <p>03:17</p>
-                                <div class="icon">
-                                    <i class='bx bxs-right-arrow'></i>
+                                <div class="icon music4">
+                                    <!--  <i class='bx bxs-right-arrow'></i>-->
                                 </div>
-                                <i class='bx bxs-plus-square'></i>
+                                <!--  <i class='bx bxs-plus-square'></i>  -->
                             </div>
                         </div>
                     </div>
@@ -270,32 +271,34 @@
                         <i class='bx bxs-playlist'></i>
                     </div>
                     <div class="song-info">
-                        <img src="assets/player.png">
+                        <img class="song-info-imagem" src="assets/player.png">
                         <div class="description">
                             <h3>Hesitations</h3>
                             <h5>Shiloh Dynasty</h5>
                             <p>Best of 2023</p>
                         </div>
-                        <div class="progress">
-                            <p>02:45</p>
-                            <div class="active-line"></div>
-                            <div class="deactive-line"></div>
-                            <p>01:02</p>
+                        <div class="duracao">
+                            <div class="barra">
+                                <progress value="0" max="1"></progress>
+                                <div class="ponto"></div>
+                            </div>
+                            <div class="tempo">
+                                <p class="inicio">0:00</p>
+                                <p class="fim">3:40</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="player-actions">
-                    <div class="buttons">
-                        <i class='bx bx-repeat'></i>
-                        <i class='bx bx-first-page'></i>
-                        <i class='bx bxs-right-arrow play-button'></i>
-                        <i class='bx bx-last-page'></i>
-                        <i class='bx bx-transfer-alt'></i>
-                    </div>
-                    <div class="lyrics">
-                        <i class='bx bx-chevron-up'></i>
-                        <h5>LYRICS</h5>
+                    <div class="player-actions">
+                        <div class="buttons">
+                            <i class='bx bx-repeat'></i>
+                            <i class='bx bx-first-page'></i>
+                            <i class='bx bxs-right-arrow play-button'></i>
+                            <audio src="musicas/dontwannaknow.mp3"></audio>
+                            <i class='bx bx-pause'></i>
+                            <i class='bx bx-last-page'></i>
+                            <i class='bx bx-transfer-alt'></i>
+                        </div>
                     </div>
                 </div>
 

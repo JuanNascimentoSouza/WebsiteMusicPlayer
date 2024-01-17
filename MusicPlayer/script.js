@@ -1,87 +1,94 @@
 let musicas = [
-    {titulo:'Guitar solo', artista:'João Tinti', source:'musicas/We Ride! - Reed Mathis.mp3', img:'imagens/rock.jpg'},
-    {titulo:'Samba raiz', artista:'Bossa Nova Brasil', source:'musicas/Ella Vater - The Mini Vandals.mp3', img:'imagens/samba.jpg'},
-    {titulo:'Música piano', artista:'John Green', source:'musicas/A Brand New Start - TrackTribe (1).mp3', img:'imagens/piano.jpg'}
-];
 
-// INICIO
+    { index: '1', titulo: 'Confortable', artista: 'Victor Ray', src: 'musicas/Confortable.mp3', img: 'assets/trend.png' },
+
+    { index: '2', titulo: 'Dont Wanna Know - Piano Version', artista: 'Natalie Layne', src: 'musicas/dontwannaknow.mp3', img: 'assets/song-1.png' },
+
+    { index: '3', titulo: 'Grateful For - Piano Version', artista: 'Natalie Layne', src: 'musicas/GratefulFor.mp3', img: 'assets/song-2.png' },
+
+    { index: '4', titulo: 'Vanish', artista: 'Giveon', src: 'musicas/Vanish.mp3', img: 'assets/song-3.png' },
+
+    { index: '5', titulo: 'Superpower', artista: 'Daniel Caeser', src: 'musicas/Superpowers.mp3', img: 'assets/song-4.jpg' }
+
+]
+
+
 let musica = document.querySelector('audio');
-let musicaIndex = 0;
+let musicaIndex = 0
 
-let nomeMusica = document.querySelector('.descricao h2');
-let nomeArtista = document.querySelector('.descricao i');
-let imagem = document.querySelector('img');
+let duracaoMusica = document.querySelector('.fim');
+let imagem = document.querySelector('.song-info-imagem');
+let nomeMusica = document.querySelector('.description h3');
+let nomeArtista = document.querySelector('.description h5');
 let tempoDecorrido = document.querySelector('.tempo .inicio');
-let duracaoMusica = document.querySelector('.tempo .fim');
 
-nomeMusica.textContent = musicas[musicaIndex].titulo;
-nomeArtista.textContent = musicas[musicaIndex].artista;
-imagem.setAttribute('src', musicas[musicaIndex].img);
+renderizarMusicas(musicaIndex);
+
 duracaoMusica.textContent = segundosParaMinutos(Math.floor(musica.duration));
+document.querySelector('.play-button').addEventListener('click', tocarMusicas);
+document.querySelector('.bx-pause').addEventListener('click', pausarMusicas);
+document.querySelector('.listen-now').addEventListener('click', tocarMusicas);
+document.querySelector('.music1').addEventListener('click', tocarMusicas);
+document.querySelector('.music2').addEventListener('click', tocarMusicas);
+document.querySelector('.music3').addEventListener('click', tocarMusicas);
+document.querySelector('.music4').addEventListener('click', tocarMusicas);
 
-// EVENTOS
-document.querySelector('.botao-play').addEventListener('click', tocarMusica);
+musica.addEventListener('timeupdate', atualizarBarra)
+imagem.setAttribute('src', musicas[musicaIndex].img);
 
-document.querySelector('.botao-pause').addEventListener('click', pausarMusica);
-
-musica.addEventListener('timeupdate', atualizarBarra);
-
-document.querySelector('.anterior').addEventListener('click', () => {
-    musicaIndex--; 
-    if (musicaIndex < 0){
-        musicaIndex = 2;
-    }
-    renderizarMusica(musicaIndex);
+document.querySelector('.bx-first-page').addEventListener('click', () => {
+    musicaIndex--;
+    renderizarMusicas(musicaIndex);
 });
 
-document.querySelector('.proximo').addEventListener('click', () => {
+document.querySelector('.bx-last-page').addEventListener('click', () => {
     musicaIndex++;
-    if (musicaIndex > 2){
-        musicaIndex = 0;
-    }
-    renderizarMusica(musicaIndex);
+    renderizarMusicas(musicaIndex);
 });
 
-// FUNÇÕES
+function tocarMusicas() {
+    musica.play();
+    document.querySelector('.play-button').style.display = 'none';
+    document.querySelector('.bx-pause').style.display = 'block';
+}
 
-function renderizarMusica(musicaIndex){
-    musica.setAttribute('src', musicas[musicaIndex].source);
+function pausarMusicas() {
+    musica.pause();
+    document.querySelector('.play-button').style.display = 'block';
+    document.querySelector('.bx-pause').style.display = 'none';
+}
 
+function atualizarBarra() {
+    let barra = document.querySelector('progress');
+    barra.style.width = Math.floor((musica.currentTime / musica.duration) * 100) + '%';
+    let tempoDecorrido = document.querySelector('.inicio')
+    tempoDecorrido.textContent = segundosParaMinutos(Math.floor(musica.currentTime));
+}
+
+function segundosParaMinutos(segundos) {
+    let campoMinutos = Math.floor(segundos / 60);
+    let campoSegundos = segundos % 60;
+    if (campoSegundos < 10) {
+        campoSegundos = '0' + campoSegundos;
+    }
+    return campoMinutos + ':' + campoSegundos;
+}
+
+function renderizarMusicas() {
+    musica.setAttribute('src', musicas[musicaIndex].src);
     musica.addEventListener('loadeddata', () => {
         nomeMusica.textContent = musicas[musicaIndex].titulo;
         nomeArtista.textContent = musicas[musicaIndex].artista;
         imagem.src = musicas[musicaIndex].img;
-    
         duracaoMusica.textContent = segundosParaMinutos(Math.floor(musica.duration));
     });
-
-    document.body.append(musica);
 }
 
-function tocarMusica(){
-    musica.play();
-    document.querySelector('.botao-play').style.display = 'none';
-    document.querySelector('.botao-pause').style.display = 'block';
-}
+let audio = new Audio("musicas/dontwannaknow.mp3");
 
-function pausarMusica(){
-    musica.pause();
-    document.querySelector('.botao-play').style.display = 'block';
-    document.querySelector('.botao-pause').style.display = 'none';
-}
+let volume = document.querySelector("#volume-control");
+volume.addEventListener("change", function(e) {
+audio.volume = e.currentTarget.value / 100;
+});
 
-function segundosParaMinutos(segundos){
-    let campoMinutos = Math.floor(segundos / 60);
-    let campoSegundos = segundos % 60;
 
-    if (campoSegundos < 10){
-        campoSegundos = '0'+ campoSegundos;
-    }
-    return `${campoMinutos}:${campoSegundos}`;
-}
-
-function atualizarBarra(){
-    let barra = document.querySelector('progress');
-    barra.style.width = Math.floor((musica.currentTime / musica.duration)*100) + '%';
-    tempoDecorrido.textContent = segundosParaMinutos(Math.floor(musica.currentTime));
-}
